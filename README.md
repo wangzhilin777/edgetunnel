@@ -26,6 +26,26 @@
 - ⚡ **性能加速**：支持自定义 ProxyIP、SOCKS5/HTTP 链式代理及优选 API，优化网络延迟。
 - 🌐 **多台适配**：完美适配 Windows, Android, iOS, MacOS 及各种软路由固件。
 
+### 📍 本地地区探测服务
+
+如果你需要给优选节点自动补地区前缀，并且希望结果更接近**本地实际命中的 Cloudflare 接入地区**，可以配合仓库里的本地探测服务一起使用：
+
+- [region-probe-docker/README.md](./region-probe-docker/README.md)
+
+它支持：
+
+- Docker 部署
+- 直接运行 `server.py`
+- 本地 / 内网部署
+- 可选代理出口探测
+- 优先按 `colo` 映射地区，拿不到时再按 `CF-RAY` 机房码兜底
+- 如果最终仍拿不到地区，订阅里会自动补成 `OFF-节点名`
+
+配置完成后，可在 Workers / Pages 环境变量里填写：
+
+- `REGION_PROBE_API`
+- `REGION_PROBE_TOKEN`
+
 ---
 
 ## 💡 快速部署
@@ -65,11 +85,11 @@
 <summary><code><strong>「 Pages 上传文件部署文字教程 」</strong></code></summary>
 
 1. 部署 CF Pages：
-   - 下载 [main.zip](https://github.com/cmliu/edgetunnel/archive/refs/heads/main.zip) 文件，并点上 Star !!!
-   - 在 CF Pages 控制台中选择 `上传资产`后，为你的项目取名后点击 `创建项目`，然后上传你下载好的 [main.zip](https://github.com/cmliu/edgetunnel/archive/refs/heads/main.zip) 文件后点击 `部署站点`。
+   - 下载 [main.zip](https://github.com/wangzhilin777/edgetunnel/archive/refs/heads/main.zip) 文件，并点上 Star !!!
+   - 在 CF Pages 控制台中选择 `上传资产`后，为你的项目取名后点击 `创建项目`，然后上传你下载好的 [main.zip](https://github.com/wangzhilin777/edgetunnel/archive/refs/heads/main.zip) 文件后点击 `部署站点`。
    - 部署完成后点击 `继续处理站点` 后，选择 `设置` > `环境变量` > **制作**为生产环境定义变量 > `添加变量`。
      变量名称填写**ADMIN**，值则为你的管理员密码，后点击 `保存`即可。
-   - 返回 `部署` 选项卡，在右下角点击 `创建新部署` 后，重新上传 [main.zip](https://github.com/cmliu/edgetunnel/archive/refs/heads/main.zip) 文件后点击 `保存并部署` 即可。
+   - 返回 `部署` 选项卡，在右下角点击 `创建新部署` 后，重新上传 [main.zip](https://github.com/wangzhilin777/edgetunnel/archive/refs/heads/main.zip) 文件后点击 `保存并部署` 即可。
 
 2. 绑定 KV 命名空间：
    - 在 `设置`选项卡中选择 `绑定` > `+ 添加` > `KV 命名空间`，然后选择一个已有的命名空间或创建一个新的命名空间进行绑定。

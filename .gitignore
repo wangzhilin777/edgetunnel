@@ -36,3 +36,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 log/
+
+# region probe
+region-probe-docker/__pycache__/
+region-probe-docker/*.pyc
